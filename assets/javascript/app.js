@@ -3,78 +3,156 @@
 // set global variables
 var correct = 0;
 var incorrect = 0;
+var userChoice;
 var timer = 30;
 var intervalId ;
 var foodQuestions = [{
     question: "Where do Spaghetti and Meatballs come from?",
-    answers: ["Naples, Italy", "Marseille, France", "Buenos Aires, Agrentina", "New Jersey, USA"],
-    correctAnswer: "New Jersey, USA",
+    answer1:"Naples, Italy", 
+    answer2:"Marseille, France", 
+    answer3:"Buenos Aires, Agrentina", 
+    answer4:"New Jersey, USA",
+    correctAnswer: '#d'
 },
 {
     question: "Who was dubbed Chef of the Century in the last 10 years?",
-    answers: ["Paul Bocuse", "Rachel Ray", "Anthony Bourdain", "Andrew Zimmerman"],
-    correctAnswer: "Paul Bocuse",
+    answer1:"Paul Bocuse", 
+    answer2:"Rachel Ray", 
+    answer3:"Anthony Bourdain", 
+    answer4:"Andrew Zimmerman",
+    correctAnswer: '#a'
 },
 {
     question: "Which city of the world has the most Michellin Stars?",
-    answers:["Paris, France", "New York City, New York", "Los Angeles, California", "Tokyo, Japan"],
-    correctAnswer: "Tokyo, Japan",
+    answer1:"Paris, France", 
+    answer2:"New York City, New York", 
+    answer3:"Los Angeles, California", 
+    answer4:"Tokyo, Japan",
+    correctAnswer: '#d'
 },
 {
     question: "Which of the following is a vegetable NOT created by man?",
-    answers:["Brocolli", "Cauliflour", "Brocollini", "Brussel Sprouts"],
-    correctAnswer: "Brocollini",
+    answer1:"Broccoli", 
+    answer2:"Cauliflour", 
+    answer3:"Broccolini", 
+    answer4:"Brussel Sprouts",
+    correctAnswer: '#c'
 },
 {
     question: "Where does Black Pepper originate?",
-    answers: ["India", "Italy", "Egypt", "Lebannon"],
-    correctAnswer: "India",
+    answer1:"India", 
+    answer2:"Italy", 
+    answer3:"Egypt", 
+    answer4:"Lebannon",
+    correctAnswer: '#a'
 },
 {
     question: "Where are the best tomatoes in the world grown?",
-    answers: ["New Jersey, USA", "Parma, Italy", "Bacelona, Spain", "Lima, Peru"],
-    correctAnswer: "New Jersey, USA",
+    answer1:"New Jersey, USA", 
+    answer2:"Parma, Italy", 
+    answer3:"Bacelona, Spain", 
+    answer4:"Lima, Peru",
+    correctAnswer: '#a'
 },
 {
     question: "Who produces the best Olive Oil?",
-    answers: ["Madrid, Spain", "Sicily, Italy", "Milan, Italy", "Bordeaux, France"],
-    correctAnswer: "Sicily, Italy",
+    answer1:"Madrid, Spain", 
+    answer2:"Sicily, Italy", 
+    answer3:"Milan, Italy", 
+    answer4:"Bordeaux, France",
+    correctAnswer: '#b'
 },
 {
     question: "Who invented Caesar Dressing and where?",
-    answers: ["A. Escoiffier, France", "Caesar, Mexico", "Emril, Portgual", "Keller, New York City"],
-    correctAnswer: "Caesar, Mexico",
+    answer1:"A. Escoffier, France", 
+    answer2:"Caesar, Mexico", 
+    answer3:"Emril, Portgual", 
+    answer4:"Keller, New York City",
+    correctAnswer: '#b'
 },
 {
     question: "What is MirePoix?",
-    answers: ["Soup", "Onions, Carrots, Celery", "Weights used to measure flour", "French Canning Technique"],
-    correctAnswer: "Onions, Carrots, Celery",
+    answer1:"Soup", 
+    answer2:"Onions, Carrots, Celery", 
+    answer3:"Weights used to measure flour", 
+    answer4:"French Canning Technique",
+    correctAnswer: '#b'
 },
 {
     question: "What does 'Mise en Place' mean?",
-    answers: ["Put in Place", "Prep is Life", "Precise execution", "Chef's Life"],
-    correctAnswer: "Put in Place",
+    answer1:"Put in Place", 
+    answer2:"Prep is Life", 
+    answer3:"Precise execution", 
+    answer4:"Chef's Life",
+    correctAnswer: '#a',
 }]
-// build a timer to countdown time left to answer question
+var lastQuestionIndex = foodQuestions.length - 1;
+var runningQuestionIndex = 0;
 function startGame(){
-   console.log("food", foodQuestions[0].question);
-   console.log("answer", foodQuestions[0].answers);
-   console.log("correct",foodQuestions[0].correctAnswer);
     clearInterval(intervalId);
+    nextQuestion();
     intervalId = setInterval(decrement, 1000);
-  
-}
-function decrement(){
-    timer--;
-    $(".timer").html("<h3>" + timer + "</h3>");
+    console.log(correct);
+  console.log(userChoice);
 
-    if(timer === 0 ){
-        stop();
+
+function nextQuestion(){
+    var food = foodQuestions[runningQuestionIndex];
+    $(".question").html(food.question);
+    $("#a").html(food.answer1);
+    $("#b").html(food.answer2);
+    $("#c").html(food.answer3);
+    $("#d").html(food.answer4);
+
+
+$("#a").on('click',function() {
+    
+    checkAnswer();
+
+});
+$("#b").on('click',function(){
+    
+    checkAnswer();
+});
+$("#c").on('click',function(){
+   
+    checkAnswer();
+});
+$("#d").on('click',function(){
+    
+    checkAnswer();
+});
+}
+function checkAnswer(userChoice){
+    if (foodQuestions[runningQuestionIndex].correctAnswer === userChoice){
+        correct++;
+       console.log("correct",userChoice);
+       stop();
+
     }
+    else{
+        incorrect++;
+        stop();
+    
+    }
+
 }
-function stop() {
-    clearInterval(intervalId);
+    function decrement(){
+        timer--;
+        $(".timer").html("<h3>" + timer + "</h3>");
+    
+        if(timer === 0 ){
+            stop();
+        }
+    }
+    function stop() {
+        clearInterval(intervalId);
+        runningQuestionIndex++;
+    }
+// build a timer to countdown time left to answer question
+
 }
+
 startGame();
 // create questions to be asked
 // give multiple choice answers
