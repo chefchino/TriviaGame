@@ -1,0 +1,29 @@
+.jumbotron{
+    height: 960px;
+    width: 960px;
+    margin: 0 auto;
+    background-color: green;
+}
+h1{
+    text-align: center;
+    font-size: 42px;
+    font-weight: bolder;
+}
+.timer{
+    margin:0 auto;
+    height: 150px;
+    width:400px;
+    background-color: yellow;
+}
+.question{
+    margin: 0 auto;
+    height: 200px;
+    width: 400px;
+    background-color: red;
+}
+.answers{
+    margin:0 auto;
+    height: 400px;
+    width:400px;
+    background-color: orange;
+}
