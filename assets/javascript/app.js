@@ -89,7 +89,7 @@ var runningQuestion = 0;
 
 function nextQuestion() {
     var food = foodQuestions[runningQuestion];
-    timer = 10;
+    // timer = 10;
     $(".question").html(food.question);
     $("#a").html(food.answer1);
     $("#b").html(food.answer2);
@@ -112,22 +112,22 @@ function checkAnswer(userChoice){
 }
 
 }
-function decrement(){
-    timer--;
-    $(".timer").html("<h3>" + timer + "</h3>");
+// function decrement(){
+//     timer--;
+//     $(".timer").html("<h3>" + timer + "</h3>");
 
-    if(timer === 0 ){
-        stop();
-    }
-}
-function stop() {
-    clearInterval(intervalId);
-    timer = 10;
-    runningQuestionIndex++;
-}
+//     if(timer === 0 ){
+//         stop();
+//     }
+// }
+// function stop() {
+//     clearInterval(intervalId);
+//     timer = 10;
+//     runningQuestionIndex++;
+// }
 function startGame(){
-    clearInterval(intervalId);
-    intervalId = setInterval(decrement, 1000);
+    // clearInterval(intervalId);
+    // intervalId = setInterval(decrement, 1000);
     nextQuestion();
 }
 startGame();
