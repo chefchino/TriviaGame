@@ -1,18 +1,16 @@
-
-
 // set global variables
+
 var correct = 0;
 var incorrect = 0;
-var userChoice;
-var timer = 30;
-var intervalId ;
+var timer =10;
+var intervalId;
 var foodQuestions = [{
     question: "Where do Spaghetti and Meatballs come from?",
     answer1:"Naples, Italy", 
     answer2:"Marseille, France", 
     answer3:"Buenos Aires, Agrentina", 
     answer4:"New Jersey, USA",
-    correctAnswer: '#d'
+    correctAnswer: 'd'
 },
 {
     question: "Who was dubbed Chef of the Century in the last 10 years?",
@@ -20,7 +18,7 @@ var foodQuestions = [{
     answer2:"Rachel Ray", 
     answer3:"Anthony Bourdain", 
     answer4:"Andrew Zimmerman",
-    correctAnswer: '#a'
+    correctAnswer: 'a'
 },
 {
     question: "Which city of the world has the most Michellin Stars?",
@@ -28,7 +26,7 @@ var foodQuestions = [{
     answer2:"New York City, New York", 
     answer3:"Los Angeles, California", 
     answer4:"Tokyo, Japan",
-    correctAnswer: '#d'
+    correctAnswer: 'd'
 },
 {
     question: "Which of the following is a vegetable NOT created by man?",
@@ -36,7 +34,7 @@ var foodQuestions = [{
     answer2:"Cauliflour", 
     answer3:"Broccolini", 
     answer4:"Brussel Sprouts",
-    correctAnswer: '#c'
+    correctAnswer: 'c'
 },
 {
     question: "Where does Black Pepper originate?",
@@ -44,7 +42,7 @@ var foodQuestions = [{
     answer2:"Italy", 
     answer3:"Egypt", 
     answer4:"Lebannon",
-    correctAnswer: '#a'
+    correctAnswer: 'a'
 },
 {
     question: "Where are the best tomatoes in the world grown?",
@@ -52,7 +50,7 @@ var foodQuestions = [{
     answer2:"Parma, Italy", 
     answer3:"Bacelona, Spain", 
     answer4:"Lima, Peru",
-    correctAnswer: '#a'
+    correctAnswer: 'a'
 },
 {
     question: "Who produces the best Olive Oil?",
@@ -60,7 +58,7 @@ var foodQuestions = [{
     answer2:"Sicily, Italy", 
     answer3:"Milan, Italy", 
     answer4:"Bordeaux, France",
-    correctAnswer: '#b'
+    correctAnswer: 'b'
 },
 {
     question: "Who invented Caesar Dressing and where?",
@@ -68,7 +66,7 @@ var foodQuestions = [{
     answer2:"Caesar, Mexico", 
     answer3:"Emril, Portgual", 
     answer4:"Keller, New York City",
-    correctAnswer: '#b'
+    correctAnswer: 'b'
 },
 {
     question: "What is MirePoix?",
@@ -76,7 +74,7 @@ var foodQuestions = [{
     answer2:"Onions, Carrots, Celery", 
     answer3:"Weights used to measure flour", 
     answer4:"French Canning Technique",
-    correctAnswer: '#b'
+    correctAnswer: 'b'
 },
 {
     question: "What does 'Mise en Place' mean?",
@@ -84,79 +82,74 @@ var foodQuestions = [{
     answer2:"Prep is Life", 
     answer3:"Precise execution", 
     answer4:"Chef's Life",
-    correctAnswer: '#a',
+    correctAnswer: 'a',
 }]
-var lastQuestionIndex = foodQuestions.length - 1;
-var runningQuestionIndex = 0;
-function startGame(){
-    clearInterval(intervalId);
-    nextQuestion();
-    intervalId = setInterval(decrement, 1000);
-    console.log(correct);
-  console.log(userChoice);
+var lastQuestion = foodQuestions.length - 1;
+var runningQuestion = 0;
 
-
-function nextQuestion(){
-    var food = foodQuestions[runningQuestionIndex];
+function nextQuestion() {
+    var food = foodQuestions[runningQuestion];
+    timer = 10;
     $(".question").html(food.question);
     $("#a").html(food.answer1);
     $("#b").html(food.answer2);
     $("#c").html(food.answer3);
     $("#d").html(food.answer4);
+// runningQuestion++;    
 
-
-$("#a").on('click',function() {
-    
-    checkAnswer();
-
-});
-$("#b").on('click',function(){
-    
-    checkAnswer();
-});
-$("#c").on('click',function(){
-   
-    checkAnswer();
-});
-$("#d").on('click',function(){
-    
-    checkAnswer();
-});
 }
+// nextQuestion();
 function checkAnswer(userChoice){
-    if (foodQuestions[runningQuestionIndex].correctAnswer === userChoice){
+    if (userChoice == foodQuestions[runningQuestion].correctAnswer){
         correct++;
-       console.log("correct",userChoice);
-       stop();
-
-    }
-    else{
+        console.log("1", correct);
+    }else{
         incorrect++;
+    }
+    if(runningQuestion < lastQuestion){
+        runningQuestion++; 
+        nextQuestion();
+}
+
+}
+function decrement(){
+    timer--;
+    $(".timer").html("<h3>" + timer + "</h3>");
+
+    if(timer === 0 ){
         stop();
-    
     }
-
 }
-    function decrement(){
-        timer--;
-        $(".timer").html("<h3>" + timer + "</h3>");
-    
-        if(timer === 0 ){
-            stop();
-        }
-    }
-    function stop() {
-        clearInterval(intervalId);
-        runningQuestionIndex++;
-    }
-// build a timer to countdown time left to answer question
-
+function stop() {
+    clearInterval(intervalId);
+    timer = 10;
+    runningQuestionIndex++;
 }
-
+function startGame(){
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+    nextQuestion();
+}
 startGame();
-// create questions to be asked
-// give multiple choice answers
-// if correct answer is selected count +1 for correct answers, display giphy that says correct, timeout to next question
-// if incorrect answer is selected count +1 for incorrect answers, display "wrong", display correct answer, timeout to next question
-// when timer reaches 0, display correct answer, count +1 to incorrect answer, display correct answer, timeout to next question
-// after all questions have looped through display number of correct answers verse incorrect answers, give option to restart without refresh
+
+// var userChoice = $(".answers").on('click', function() {
+
+//     if(foodQuestions[runningQuestion].correctAnswer === userChoice){
+//         correct++;
+//         nextQuestion();
+//         console.log("1",userChoice);
+//     }else{
+//         incorrect++;
+//         nextQuestion();
+//     }
+// })
+
+
+// }
+// function startGame(){
+    
+//   nextQuestion();
+
+
+// }
+// startGame();
