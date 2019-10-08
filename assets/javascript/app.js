@@ -89,13 +89,13 @@ var runningQuestion = 0;
 
 function nextQuestion() {
     var food = foodQuestions[runningQuestion];
-    // timer = 10;
+    timer = 10;
     $(".question").html(food.question);
     $("#a").html(food.answer1);
     $("#b").html(food.answer2);
     $("#c").html(food.answer3);
     $("#d").html(food.answer4);
-// runningQuestion++;    
+ 
 
 }
 // nextQuestion();
@@ -105,30 +105,34 @@ function checkAnswer(userChoice){
         console.log("1", correct);
     }else{
         incorrect++;
+        console.log("2", incorrect);
     }
     if(runningQuestion < lastQuestion){
         runningQuestion++; 
         nextQuestion();
+}else {
+    clearInterval(intervalId);
+    alert("DONE",{correct, incorrect});
 }
+console.log({correct, incorrect});
+}
+function decrement(){
+    timer--;
+    $(".timer").html("<h3>" + timer + "</h3>");
+
+    if(timer === 0 ){
+        incorrect++;
+        runningQuestion++;
+        nextQuestion();
+    }
 
 }
-// function decrement(){
-//     timer--;
-//     $(".timer").html("<h3>" + timer + "</h3>");
 
-//     if(timer === 0 ){
-//         stop();
-//     }
-// }
-// function stop() {
-//     clearInterval(intervalId);
-//     timer = 10;
-//     runningQuestionIndex++;
-// }
 function startGame(){
-    // clearInterval(intervalId);
-    // intervalId = setInterval(decrement, 1000);
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
     nextQuestion();
+
 }
 startGame();
 
