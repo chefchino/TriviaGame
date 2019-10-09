@@ -1,12 +1,29 @@
+.gameOver{
+    position: relative;
+    height: 960px;
+    width: 960px;
+    margin: 0 auto;
+    background-color: blue;
+    
+}
+
+
 .jumbotron{
+    position: absolute;
     height: 960px;
     width: 960px;
     margin: 0 auto;
     background-color: green;
+    display: block;
 }
 h1{
     text-align: center;
     font-size: 42px;
+    font-weight: bolder;
+}
+p{
+    text-align: center;
+    font-size: 36px;
     font-weight: bolder;
 }
 .timer{
