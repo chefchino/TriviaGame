@@ -5,8 +5,23 @@
     margin: 0 auto;
     background-color: blue;
     
+    
 }
 
+.images{
+    position: relative;
+    margin:0 auto;
+    margin-top:20px;
+    padding-top:30px;
+    height: 250px;
+    width:400px;
+    background-color: pink;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+    display: block;
+
+}
 
 .jumbotron{
     position: absolute;
@@ -49,8 +64,10 @@ p{
     font-weight: bolder;
 }
 .answers{
+    position:absolute;
     margin:0 auto;
     margin-top:20px;
+    margin-left: 280px;
     padding-top:30px;
     height: 250px;
     width:400px;
@@ -58,6 +75,17 @@ p{
     text-align: center;
     font-size: 24px;
     font-weight: bolder;
+    /* display:none; */
+}
+#WINNER, #LOSER{
+    position: absolute;
+    color: green;
+    text-align: center;
+    margin-left: 40px;
+}
+img{
+    height: 250px;
+    width:400px;
 }
 .choice{
     background-color: orange;
