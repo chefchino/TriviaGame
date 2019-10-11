@@ -100,30 +100,23 @@ var gameOver = $(".gameOver")
 var jumbotron = $(".jumbotron")
 var answers = $(".answers")
 var timeOut;
-document
+
 function nextQuestion() {
+    var food = foodQuestions[runningQuestion]; 
     clearInterval(intervalId);
-    timer = 5;
+    timer = 10;
     intervalId = setInterval(decrement, 1000);
-    
-    // clearTimeout(timeOut);
     $(".answers").empty();
-    $(".answers").append($("<button class='choice' id='a' onclick= checkAnswer('a')></button>"),$("<button class='choice' id='b' onclick= checkAnswer('b')></button>"),$("<button class='choice' id = 'c' onclick= checkAnswer('c')></button>"),$("<button class= 'choice' id= 'd' onclick= checkAnswer('d')></button>"))
-    var food = foodQuestions[runningQuestion];
-    
+    $(".answers").append($("<button class='choice' id='a' onclick= checkAnswer('a')></button>"),"<br>",$("<button class='choice' id='b' onclick= checkAnswer('b')></button>"),"<br>", $("<button class='choice' id = 'c' onclick= checkAnswer('c')></button>"),"<br>",$("<button class= 'choice' id= 'd' onclick= checkAnswer('d')></button>")) 
     $(".question").html(food.question);
     $("#a").html(food.answer1);
     $("#b").html(food.answer2);
     $("#c").html(food.answer3);
     $("#d").html(food.answer4);
-    // gameOver.empty();
+
 
 }
-// $("#reset").on('click', function(){//listener for static
-//     console.log("reset");
-// })
 
-// nextQuestion();
 function checkAnswer(userChoice) {
     if (userChoice == foodQuestions[runningQuestion].correctAnswer) {
         correct++;
@@ -131,6 +124,7 @@ function checkAnswer(userChoice) {
         var image= $("<img>").attr("src",foodQuestions[runningQuestion].imgFood);
         $(".answers").append("<h1 id='WINNER'>YOU GOT IT!!!</h1>")
         $(".answers").append(image);
+        clearInterval(intervalId);
         
         console.log("1", correct);
     } else {
@@ -139,6 +133,7 @@ function checkAnswer(userChoice) {
         var image= $("<img>").attr("src",foodQuestions[runningQuestion].imgFood);
         $(".answers").append("<h1 id='LOSER'>'THAT IS A MISS!!!'</h1>")
         $(".answers").append(image);
+        clearInterval(intervalId);
         console.log("2", incorrect);
 
     }
@@ -154,7 +149,7 @@ function checkAnswer(userChoice) {
             gameOver.append(feedback);
             jumbotron.hide();
         }
-    }, 3000);
+    }, 1500);
 
     
 

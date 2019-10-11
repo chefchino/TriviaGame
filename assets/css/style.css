@@ -1,9 +1,11 @@
 .gameOver{
     position: relative;
-    height: 960px;
+    height: 760px;
     width: 960px;
     margin: 0 auto;
-    background-color: blue;
+    background-color: lightblue;
+    color: darkslategray;
+    
     
     
 }
@@ -22,32 +24,39 @@
     display: block;
 
 }
-
+#title{
+   
+    color: goldenrod;
+    font-size:64px;
+}
 .jumbotron{
     position: absolute;
-    height: 960px;
+    height: 760px;
     width: 960px;
     margin: 0 auto;
-    background-color: green;
-    display: block;
+    background-color: lightblue;
+    /* display: block; */
 }
+
 h1{
     text-align: center;
-    font-size: 42px;
+    font-size: 36px;
     font-weight: bolder;
 }
 p{
     text-align: center;
-    font-size: 36px;
+    font-size: 30px;
     font-weight: bolder;
 }
 .timer{
     margin:0 auto;
     margin-top:20px;    
-    padding-top:20px;
-    height: 130px;
+    padding-top:2px;
+    height: 100px;
     width:400px;
-    background-color: yellow;
+    background-color: black;
+    color: yellow;
+    border: 1px dotted white;
     text-align: center;
     font-size: 42px;
     font-weight: bolder;
@@ -56,9 +65,11 @@ p{
     margin: 0 auto;
     margin-top:20px;
     padding-top:70px;
-    height: 130px;
+    height: 100px;
     width: 400px;
-    background-color: red;
+    background-color: black;
+    color: yellow;
+    border: 1px dotted white;
     text-align: center;
     font-size: 24px;
     font-weight: bolder;
@@ -66,18 +77,20 @@ p{
 .answers{
     position:absolute;
     margin:0 auto;
-    margin-top:20px;
+    margin-top:10px;
     margin-left: 280px;
-    padding-top:30px;
-    height: 250px;
+  
+    height: 230px;
     width:400px;
-    background-color: orange;
+    background-color: black;
+    color: yellow;
+    border: 1px dotted white;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bolder;
-    /* display:none; */
+ 
 }
-#WINNER, #LOSER{
+#WINNER, #LOSER, #TIME{
     position: absolute;
     color: green;
     text-align: center;
@@ -88,8 +101,10 @@ img{
     width:400px;
 }
 .choice{
-    background-color: orange;
+    background-color: red;
+    color: black;
+    border: 1px dotted blue;
     font-weight:bold;
-    margin-top:15px;
+    margin-top:5px;
     font-size:28px;
 }
